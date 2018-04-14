@@ -1,9 +1,11 @@
 package com.fragment.even.setfragmentdemo;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 transaction(one).commit();
+//                LoandFragment(one);
+                Log.i("md","button01");
             }
         });
         button02 = (Button) findViewById(R.id.bt_02);
@@ -36,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 transaction(two).commit();
+//                LoandFragment(two);
+                Log.i("md","button02");
             }
         });
         button03 = (Button) findViewById(R.id.bt_03);
@@ -43,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 transaction(three).commit();
+//                LoandFragment(three);
+                Log.i("md","button03");
             }
         });
         button04 = (Button) findViewById(R.id.bt_04);
@@ -50,12 +58,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 transaction(four).commit();
+//                LoandFragment(four);
+                Log.i("md","button04");
             }
         });
     }
 
-    private Fragment currentFragment = new Fragment();
+    private  void  LoandFragment(Fragment fragment){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment, fragment);
+        ft.commitAllowingStateLoss();
+    }
 
+
+
+    private Fragment currentFragment = new Fragment();
     //Fragment优化
     private FragmentTransaction transaction(Fragment targetFragment) {
 
